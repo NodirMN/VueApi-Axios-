@@ -1,3 +1,12 @@
 {
-  "persons": []
+  "cars": [
+    {
+      "color": "#e40101",
+      "depart": "Xechbek",
+      "distance": "1212312",
+      "model": "fgf",
+      "year": "54545",
+      "id": 1
+    }
+  ]
 }

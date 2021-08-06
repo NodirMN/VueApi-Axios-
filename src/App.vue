@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <h1>Persons</h1>
+    <h1>Cars</h1>
     <div class="per">
-    <input type="text" placeholder="Name" v-model="person.name">
-    <input type="number" placeholder="age" v-model="person.age">
-    <select v-model="person.depart">
-        <option value="Veb ilova">Veb ilova</option>
-        <option value="Mobil ilova">Mobil ilova</option>
-        <option value="Menijment">Menijment</option>
+    <input type="text" placeholder="Name" v-model="car.model">
+    <input type="color" placeholder="Color" v-model="car.color">
+    <input type="number" placeholder="Year" v-model="car.year">
+    <input type="number" placeholder="Distance" v-model="car.distance">
+    <select v-model="car.depart">
+        <option value="Xechbek">Xechbek</option>
+        <option value="Sedan">Sedan</option>
+        <option value="Kupe">Kupe</option>
     </select>
     <button class="add" @click="add()">Add</button>
     </div>
@@ -15,16 +17,20 @@
     <table width="100%" cellspacing="0" border="1">
       <tr>
         <th>№</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Depart</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th>Year of manufacturet</th>
+        <th>Pressing distance</th>
+        <th>Cars body</th>
         <th>Delet button</th>
       </tr>
-      <tr v-for ='(person,index) of persons' :key='index'>
-          <td>{{person.id}}</td>
-          <td>{{person.name}}</td>
-          <td>{{person.age}}</td>
-          <td>{{person.depart}}</td>
+      <tr v-for ='(car,index) of cars' :key='index'>
+          <td>{{car.id}}</td>
+          <td>{{car.model}}</td>
+          <td>{{car.color}}</td>
+          <td>{{car.year}}</td>
+          <td>{{car.distance}}</td>
+          <td>{{car.depart}}</td>
           <td>
             <button class="dell" @click="del(index)">Delet</button>
           </td>
@@ -40,25 +46,25 @@ export default {
   name: 'App',
     data(){
       return{
-        persons:[],
-        person:{}
+        cars:[],
+        car:{}
       }
     },
     methods: {
       add(){
-        axios.post('http://localhost:3000/persons',this.person).then(response => {this.persons.push(response.data)
-        this.person = {}
+        axios.post('http://localhost:3000/cars',this.car).then(response => {this.cars.push(response.data)
+        this.car = {}
         })
     },
     del(index){
-      console.log(this.persons[index])
-      axios.delete('http://localhost:3000/persons/'+this.persons[index].id).then(response => {console.log(response.data) 
-      this.persons.splice(index,1)
+      console.log(this.cars[index])
+      axios.delete('http://localhost:3000/cars/'+this.cars[index].id).then(response => {console.log(response.data) 
+      this.cars.splice(index,1)
       })
     }
     },
     created(){
-      axios.get('http://localhost:3000/persons').then(response => {this.persons = response.data})
+      axios.get('http://localhost:3000/cars').then(response => {this.cars = response.data})
     }
 }
 </script>

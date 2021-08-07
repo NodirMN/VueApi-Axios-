@@ -3,7 +3,10 @@
     <h1>Cars</h1>
     <div class="per">
     <input type="text" placeholder="Name" v-model="car.model">
-    <input type="color" placeholder="Color" v-model="car.color">
+    <select v-model="car.color">
+        <option value="Qora">Qora</option>
+        <option value="Oq">Oq</option>
+    </select>
     <input type="number" placeholder="Year" v-model="car.year">
     <input type="number" placeholder="Distance" v-model="car.distance">
     <select v-model="car.depart">
